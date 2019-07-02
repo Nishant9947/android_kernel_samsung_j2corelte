@@ -60,3 +60,6 @@ obj-$(CONFIG_BRCMSMAC)	+= brcm80211/
 
 obj-$(CONFIG_CW1200)	+= cw1200/
 obj-$(CONFIG_RSI_91X)	+= rsi/
+
+obj-$(CONFIG_SCSC_WLAN)   += scsc/
+obj-$(CONFIG_SCSC_WLAN_FAPI4)   += scsc_fapi4/

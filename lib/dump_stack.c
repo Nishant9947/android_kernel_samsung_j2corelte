@@ -12,6 +12,7 @@
 static void __dump_stack(void)
 {
 	dump_stack_print_info(KERN_DEFAULT);
+
 	show_stack(NULL, NULL);
 }
 
@@ -23,7 +24,7 @@ static void __dump_stack(void)
 #ifdef CONFIG_SMP
 static atomic_t dump_lock = ATOMIC_INIT(-1);
 
-asmlinkage __visible void dump_stack(void)
+asmlinkage __visible void _dump_stack(bool auto_summary)
 {
 	int was_locked;
 	int old;
@@ -54,6 +55,12 @@ retry:
 
 	preempt_enable();
 }
+
+asmlinkage __visible void dump_stack(void)
+{
+	_dump_stack(false);
+}
+
 #else
 asmlinkage __visible void dump_stack(void)
 {
